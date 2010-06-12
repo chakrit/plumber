@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
+using System.IO;
+
+using Plumber;
+using Plumber.Server;
 
 namespace HelloWorld
 {
@@ -12,7 +13,14 @@ namespace HelloWorld
 
     public void Run()
     {
-      Console.WriteLine("HELLO WORLD!");
+      IServer server = new HttpListenerServer((req, resp) =>
+      {
+        var sw = new StreamWriter(resp.Stream);
+        sw.Write("Hello World!");
+        sw.Close();
+      });
+
+      server.Start();
     }
   }
 }
