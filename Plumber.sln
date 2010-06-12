@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{1E2C7133-287D-4F4B-8146-144E76977104}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		src\PlumberAssemblyInfo.cs = src\PlumberAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1C44C4BE-AE30-478F-918A-A8ABA96CDECB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plumber", "src\Plumber\Plumber.csproj", "{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{89A334BA-AFF0-46D5-ADE9-E31AA325A25F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "samples\HelloWorld\HelloWorld.csproj", "{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7} = {1C44C4BE-AE30-478F-918A-A8ABA96CDECB}
+		{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209} = {89A334BA-AFF0-46D5-ADE9-E31AA325A25F}
+	EndGlobalSection
+EndGlobal
