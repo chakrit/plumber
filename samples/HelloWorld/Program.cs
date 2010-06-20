@@ -2,7 +2,6 @@
 using System.IO;
 
 using Plumber;
-using Plumber.Server;
 
 namespace HelloWorld
 {
@@ -13,11 +12,13 @@ namespace HelloWorld
 
     public void Run()
     {
-      IServer server = new HttpListenerServer((req, resp) =>
+      var server = Pipes.Connect("localhost", 80, ctx =>
       {
-        var sw = new StreamWriter(resp.Stream);
-        sw.Write("Hello World!");
+        var sw = new StreamWriter(ctx.Response.Stream);
+        sw.Write("Hello, World!");
         sw.Close();
+
+        return ctx;
       });
 
       server.Start();

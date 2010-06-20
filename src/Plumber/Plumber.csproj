@@ -46,7 +46,10 @@
       <Link>Properties\PlumberAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Context.cs" />
+    <Compile Include="DefaultContainer.cs" />
     <Compile Include="Delegates.cs" />
+    <Compile Include="IContainer.cs" />
+    <Compile Include="Pipes.cs" />
     <Compile Include="Server\HttpListenerRequestWrapper.cs" />
     <Compile Include="Server\HttpListenerResponseWrapper.cs" />
     <Compile Include="Server\HttpListenerServer.core.cs" />
