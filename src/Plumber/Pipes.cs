@@ -1,6 +1,4 @@
 ﻿
-using System;
-
 namespace Plumber
 {
   public static class Pipes
@@ -15,9 +13,11 @@ namespace Plumber
       return Connect(GetContainer(), host, port, pipes);
     }
 
-    public static IServer Connect(this IContainer container, string host, int port, Pipe pipes)
+    public static IServer Connect(this IContainer container,
+      string host, int port, Pipe pipes)
     {
-      return container.BuildServer(host, port, container.BuildRequestHandler(pipes));
+      return container.BuildServer(host, port,
+        container.BuildRequestHandler(pipes));
     }
   }
 }

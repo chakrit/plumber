@@ -1,7 +1,7 @@
 ﻿
+using System;
 using System.Net;
 using System.Threading;
-using System;
 
 namespace Plumber.Server
 {
@@ -84,9 +84,7 @@ namespace Plumber.Server
             var context = _listener.EndGetContext(ar);
             ThreadPool.QueueUserWorkItem(processRequest, context);
           }
-          finally {
-            _requestsCounter.Signal();
-          }
+          finally { _requestsCounter.Signal(); }
 
         }, null);
 
@@ -102,11 +100,9 @@ namespace Plumber.Server
       var request = new HttpListenerRequestWrapper(rawContext.Request);
       var response = new HttpListenerResponseWrapper(rawContext.Response);
 
-      try {
-        Handler(request, response);
-      }
+      try { Handler(request, response); }
       catch (Exception ex) {
-        // TODO: Handle properly, the server must be fault-tolerant
+        // TODO: Handle properly, (but the server must be fault-tolerant)
         Console.WriteLine(ex.ToString());
       }
     }

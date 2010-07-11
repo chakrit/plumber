@@ -7,7 +7,7 @@ namespace Plumber
   {
     public RequestHandler BuildRequestHandler(Pipe pipes)
     {
-      return (req, resp) => pipes(GetNewContext(req, resp));
+      return (req, resp) => pipes(BuildContext(req, resp));
     }
 
     public IServer BuildServer(string host, int port, RequestHandler handler)
@@ -15,7 +15,7 @@ namespace Plumber
       return new HttpListenerServer(host, port, handler);
     }
 
-    public IContext GetNewContext(IRequest request, IResponse response)
+    public IContext BuildContext(IRequest request, IResponse response)
     {
       return new Context(request, response);
     }
