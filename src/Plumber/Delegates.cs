@@ -1,4 +1,6 @@
 ﻿
+using System.Threading.Tasks;
+
 namespace Plumber
 {
   // core stuff
@@ -15,7 +17,7 @@ namespace Plumber
 
   // a `Continuable` is an unfinished pipe, it requires the "next" pipe to be passed in
   // once passed in, then, can it continue. The finished (return value) `Pipe`
-  // is the product of executing the pipe and the nextPipe together
+  // is the product of executing the pipe and the `next` pipe together
   public delegate Pipe Continuable(Pipe next);
 
   // Special continuables, used when any extra values are

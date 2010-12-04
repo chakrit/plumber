@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Plumber.Server
+namespace Plumber.Servers
 {
   // Base server class to help with boiler plate stuffs
   public abstract class ServerBase : IServer

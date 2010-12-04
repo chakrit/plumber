@@ -4,3 +4,9 @@ build
 TestResults
 *.user
 *.suo
+*.Cache
+*.gpState
+
+# Mono files:
+*.pidb
+*.userprefs

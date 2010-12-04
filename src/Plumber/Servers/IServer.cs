@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Plumber
+namespace Plumber.Servers
 {
   public interface IServer : IDisposable
   {

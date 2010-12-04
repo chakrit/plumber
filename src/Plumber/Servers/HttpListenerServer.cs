@@ -1,5 +1,5 @@
 ﻿
-namespace Plumber.Server
+namespace Plumber.Servers
 {
   public partial class HttpListenerServer : ServerBase
   {

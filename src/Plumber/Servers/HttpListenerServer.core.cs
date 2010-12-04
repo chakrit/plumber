@@ -3,7 +3,7 @@ using System;
 using System.Net;
 using System.Threading;
 
-namespace Plumber.Server
+namespace Plumber.Servers
 {
   public partial class HttpListenerServer
   {
@@ -74,17 +74,22 @@ namespace Plumber.Server
     {
       var handles = new WaitHandle[] { _pumpCounter, _stopSignal };
 
-      while (WaitHandle.WaitAny(handles) == 0 /* means we got a pumpCounter */) {
+      while (WaitHandle.WaitAny(handles) == 0) /* means we got a pumpCounter */ {
 
         _listener.BeginGetContext(ar =>
         {
+          _pumpCounter.Release();
           _requestsCounter.AddCount();
 
           try {
             var context = _listener.EndGetContext(ar);
             ThreadPool.QueueUserWorkItem(processRequest, context);
           }
-          finally { _requestsCounter.Signal(); }
+          catch (Exception e) {
+          }
+          finally {
+            _requestsCounter.Signal();
+          }
 
         }, null);
 
@@ -100,7 +105,9 @@ namespace Plumber.Server
       var request = new HttpListenerRequestWrapper(rawContext.Request);
       var response = new HttpListenerResponseWrapper(rawContext.Response);
 
-      try { Handler(request, response); }
+      try {
+        Handler(request, response);
+      }
       catch (Exception ex) {
         // TODO: Handle properly, (but the server must be fault-tolerant)
         Console.WriteLine(ex.ToString());

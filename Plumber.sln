@@ -11,9 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1C44C4BE-AE3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plumber", "src\Plumber\Plumber.csproj", "{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plumber.Http", "src\Plumber.Http\Plumber.Http.csproj", "{CF30E6C9-F78A-4C3D-A95E-1C547D80AA72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plumber.Results", "src\Plumber.Results\Plumber.Results.csproj", "{6CCC4F82-1375-4ED2-8350-32A15EC54EEB}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{89A334BA-AFF0-46D5-ADE9-E31AA325A25F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "samples\HelloWorld\HelloWorld.csproj", "{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileServer", "samples\FileServer\FileServer.csproj", "{8A25492B-1083-477C-8316-27D5ED1D3AC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormData", "samples\FormData\FormData.csproj", "{2C556EA9-259E-49BD-86FC-8C600F2F7C93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,20 +29,69 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C556EA9-259E-49BD-86FC-8C600F2F7C93}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2C556EA9-259E-49BD-86FC-8C600F2F7C93}.Debug|Any CPU.Build.0 = Debug|x86
+		{2C556EA9-259E-49BD-86FC-8C600F2F7C93}.Release|Any CPU.ActiveCfg = Release|x86
+		{2C556EA9-259E-49BD-86FC-8C600F2F7C93}.Release|Any CPU.Build.0 = Release|x86
+		{6CCC4F82-1375-4ED2-8350-32A15EC54EEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CCC4F82-1375-4ED2-8350-32A15EC54EEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CCC4F82-1375-4ED2-8350-32A15EC54EEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CCC4F82-1375-4ED2-8350-32A15EC54EEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A25492B-1083-477C-8316-27D5ED1D3AC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A25492B-1083-477C-8316-27D5ED1D3AC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A25492B-1083-477C-8316-27D5ED1D3AC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A25492B-1083-477C-8316-27D5ED1D3AC7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF30E6C9-F78A-4C3D-A95E-1C547D80AA72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF30E6C9-F78A-4C3D-A95E-1C547D80AA72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF30E6C9-F78A-4C3D-A95E-1C547D80AA72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF30E6C9-F78A-4C3D-A95E-1C547D80AA72}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7} = {1C44C4BE-AE30-478F-918A-A8ABA96CDECB}
+		{CF30E6C9-F78A-4C3D-A95E-1C547D80AA72} = {1C44C4BE-AE30-478F-918A-A8ABA96CDECB}
+		{6CCC4F82-1375-4ED2-8350-32A15EC54EEB} = {1C44C4BE-AE30-478F-918A-A8ABA96CDECB}
 		{DF3A5E95-80CA-4A8F-885F-B5AC12BC1209} = {89A334BA-AFF0-46D5-ADE9-E31AA325A25F}
+		{8A25492B-1083-477C-8316-27D5ED1D3AC7} = {89A334BA-AFF0-46D5-ADE9-E31AA325A25F}
+		{2C556EA9-259E-49BD-86FC-8C600F2F7C93} = {89A334BA-AFF0-46D5-ADE9-E31AA325A25F}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = samples\HelloWorld\HelloWorld.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 90
+		$3.TabWidth = 2
+		$3.RemoveTrailingWhitespace = True
+		$3.EolMarker = Windows
+		$3.inheritsSet = VisualStudio
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+		$0.StandardHeader = $4
+		$4.Text = 
+		$4.inheritsSet = Apache2License
+		$0.VersionControlPolicy = $5
+		$5.inheritsSet = Mono
+		$0.ChangeLogPolicy = $6
+		$6.UpdateMode = None
+		$6.MessageStyle = $7
+		$7.LineAlign = 0
+		$6.inheritsSet = Mono
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

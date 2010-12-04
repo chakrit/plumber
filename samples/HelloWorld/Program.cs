@@ -1,27 +1,20 @@
 ﻿
-using System.IO;
-
 using Plumber;
+using Plumber.Framework;
 
 namespace HelloWorld
 {
   public class Program
   {
-    internal static void Main() { new Program().Run(); }
-
-
-    public void Run()
+    static internal void Main()
     {
-      var server = Pipes.Connect("localhost", 80, ctx =>
-      {
-        var sw = new StreamWriter(ctx.Response.Stream);
-        sw.Write("Hello, World!");
-        sw.Close();
+      new Program().Run();
+    }
 
-        return ctx;
-      });
 
-      server.Start();
+    public void Run ()
+    {
+      Pipes.Connect ("localhost", 80, Static.String ("Hello World!")).Start ();
     }
   }
 }
