@@ -93,7 +93,7 @@ namespace FileServer
 
     private Pipe sendFileContent(Pipe notFound)
     {
-      return Static.File((Pipe<string> next) => ctx =>
+      return Static.File(next => ctx =>
       {
         var path = mapPath(ctx.Request.Path);
 
