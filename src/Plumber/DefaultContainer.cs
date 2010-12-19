@@ -6,9 +6,9 @@ using Plumber.Services;
 
 namespace Plumber
 {
-  internal class DefaultContainer : IContainer
+  public class DefaultContainer : IContainer
   {
-    public RequestHandler BuildRequestHandler(Pipe pipes, IServicesBroker servicesBroker)
+    public virtual RequestHandler BuildRequestHandler(Pipe pipes, IServicesBroker servicesBroker)
     {
       Assert.ArgumentsNotNull(() => pipes, () => servicesBroker);
 
@@ -16,7 +16,7 @@ namespace Plumber
         pipes(BuildContext(req, resp, BuildStore(), servicesBroker));
     }
 
-    public IServer BuildServer(string host, int port, RequestHandler handler)
+    public virtual IServer BuildServer(string host, int port, RequestHandler handler)
     {
       Assert.ArgumentNotNull(() => handler);
       Assert.ArgumentSatisfy(() => host, s => !string.IsNullOrEmpty(s),
@@ -28,12 +28,12 @@ namespace Plumber
     }
 
 
-    public IObjectsStore BuildStore()
+    public virtual IObjectsStore BuildStore()
     {
       return new ObjectsStore();
     }
 
-    public IServicesBroker BuildServicesBroker(IEnumerable<IService> services)
+    public virtual IServicesBroker BuildServicesBroker(IEnumerable<IService> services)
     {
       Assert.ArgumentNotNull(() => services);
 
@@ -41,7 +41,7 @@ namespace Plumber
     }
 
 
-    public IContext BuildContext(IRequest request, IResponse response,
+    public virtual IContext BuildContext(IRequest request, IResponse response,
       IObjectsStore store, IServicesBroker servicesBroker)
     {
       Assert.ArgumentsNotNull(

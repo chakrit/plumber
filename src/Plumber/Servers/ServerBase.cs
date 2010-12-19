@@ -45,6 +45,13 @@ namespace Plumber.Servers
     protected abstract void StartCore();
     protected abstract void StopCore();
 
+    protected void ReportError(string message, Exception exception)
+    {
+      // TODO: Properly handle errors.
+      // TODO: Maybe convert to a ErrorHandler delegate?
+      Console.WriteLine(exception);
+    }
+
 
     public void Dispose()
     {

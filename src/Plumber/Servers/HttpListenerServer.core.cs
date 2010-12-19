@@ -109,8 +109,7 @@ namespace Plumber.Servers
         Handler(request, response);
       }
       catch (Exception ex) {
-        // TODO: Handle properly, (but the server must be fault-tolerant)
-        Console.WriteLine(ex.ToString());
+        ReportError(null, ex);
       }
     }
   }

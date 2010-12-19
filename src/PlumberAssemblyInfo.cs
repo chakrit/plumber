@@ -1,5 +1,6 @@
 
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Plumber")]
@@ -14,3 +15,6 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("0.2.*")]
 [assembly: AssemblyFileVersion("0.2.*")]
+
+[assembly: InternalsVisibleTo("Plumber.Owin")]
+[assembly: InternalsVisibleTo("Plumber.Servers.Kayak")]
