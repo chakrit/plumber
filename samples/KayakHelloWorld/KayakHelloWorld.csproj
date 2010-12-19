@@ -11,7 +11,8 @@
     <RootNamespace>KayakHelloWorld</RootNamespace>
     <AssemblyName>KayakHelloWorld</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -45,6 +46,14 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\lib\kayak\Kayak\Kayak.csproj">
+      <Project>{79DDD0CE-6F79-4212-A972-8618AD6E405F}</Project>
+      <Name>Kayak</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Plumber.Owin\Plumber.Owin.csproj">
+      <Project>{100B55BB-568A-484C-9766-427982315C85}</Project>
+      <Name>Plumber.Owin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Plumber.Servers.Kayak\Plumber.Servers.Kayak.csproj">
       <Project>{1469ADE3-649B-4E7B-8772-5C165BB14BE5}</Project>
       <Name>Plumber.Servers.Kayak</Name>
@@ -53,11 +62,6 @@
       <Project>{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}</Project>
       <Name>Plumber</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

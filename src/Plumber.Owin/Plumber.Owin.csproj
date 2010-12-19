@@ -37,14 +37,17 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\PlumberAssemblyInfo.cs">
+      <Link>Properties\PlumberAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Delegates.cs" />
+    <Compile Include="OwinContainerBase.cs" />
     <Compile Include="Servers\OwinServerBridge.cs" />
     <Compile Include="Servers\OwinAsyncResult.cs" />
     <Compile Include="OwinContainer.cs" />
     <Compile Include="Servers\OwinRequestStream.cs" />
     <Compile Include="Servers\OwinRequestWrapper.cs" />
     <Compile Include="Servers\OwinResponse.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\lib\owin\src\Owin.csproj">

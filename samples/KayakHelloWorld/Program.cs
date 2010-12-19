@@ -11,13 +11,9 @@ namespace KayakHelloWorld
 
     public void Run()
     {
-      Pipes.Connect(new KayakOwinContainer(),
-      host: null,
-      port: 80,
-      pipes: Static.String("Hello World!"))
-
-      .Start();
+      Pipes
+        .Connect(new KayakContainer(), "localhost", 80, Static.String("Hello World!"))
+        .Start();
     }
-
   }
 }
