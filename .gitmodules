@@ -1,0 +1,6 @@
+[submodule "lib/owin"]
+	path = lib/owin
+	url = git://github.com/owin/owin.git
+[submodule "lib/kayak"]
+	path = lib/kayak
+	url = git://github.com/chakrit/kayak.git
