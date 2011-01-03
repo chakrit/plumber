@@ -18,6 +18,9 @@ namespace Plumber.Servers
 
     public ServerBase(string[] urls, RequestHandler handler)
     {
+      if (urls == null)
+        urls = new string[] { };
+
       Urls = Array.AsReadOnly(urls);
       Handler = handler;
     }

@@ -9,6 +9,7 @@ namespace Plumber.Servers
   public class OwinRequestWrapper : IRequest
   {
     private IOwinRequest _owin;
+    private Stream _requestStream;
 
     public OwinRequestWrapper(IOwinRequest owinRequest) { _owin = owinRequest; }
 
@@ -22,8 +23,11 @@ namespace Plumber.Servers
 
     public Stream Stream
     {
-      // TODO: Make OwinRequest extends Stream
-      get { throw new System.NotImplementedException(); }
+      get
+      {
+        return _requestStream ??
+          (_requestStream = new OwinRequestStream(_owin));
+      }
     }
 
   }

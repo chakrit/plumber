@@ -12,9 +12,9 @@ namespace HelloWorld
     }
 
 
-    public void Run ()
+    public void Run()
     {
-      Pipes.Connect ("localhost", 80, Static.String ("Hello World!")).Start ();
+      Pipes.Connect("localhost", 80, Static.String("Hello World!")).Start();
     }
   }
 }

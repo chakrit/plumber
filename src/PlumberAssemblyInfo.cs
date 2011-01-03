@@ -16,5 +16,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("0.2.*")]
 [assembly: AssemblyFileVersion("0.2.*")]
 
+[assembly: InternalsVisibleTo("Plumber.Servers.AspNet")]
 [assembly: InternalsVisibleTo("Plumber.Owin")]
 [assembly: InternalsVisibleTo("Plumber.Servers.Kayak")]
