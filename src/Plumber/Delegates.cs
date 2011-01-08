@@ -26,4 +26,12 @@ namespace Plumber
   public delegate Pipe<T> Filter<T>(Pipe<T> next);
   public delegate Pipe<T> Consume<T>(Pipe next);
 
+
+  public static class DelegateHelpers
+  {
+    public static Continuable AsContinuable(this Pipe pipe)
+    {
+      return next => ctx => next(pipe(ctx));
+    }
+  }
 }

@@ -48,6 +48,7 @@
     <Compile Include="DefaultContainer.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="Exceptions.cs" />
+    <Compile Include="Framework\ContinuableDict.cs" />
     <Compile Include="Framework\HttpErrors.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -59,6 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HttpStatuses.tt</DependentUpon>
     </Compile>
+    <Compile Include="Framework\Map.cs" />
     <Compile Include="Framework\Static.cs" />
     <Compile Include="IContainer.cs" />
     <Compile Include="IObjectsStore.cs" />

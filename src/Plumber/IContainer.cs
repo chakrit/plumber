@@ -6,6 +6,8 @@ using Plumber.Services;
 
 namespace Plumber
 {
+  // TODO: Change host/port combination to something more friendly to
+  //   non-http.sys-using servers...
   public interface IContainer
   {
     RequestHandler BuildRequestHandler(Pipe pipes, IServicesBroker services);

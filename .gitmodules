@@ -3,4 +3,4 @@
 	url = git://github.com/owin/owin.git
 [submodule "lib/kayak"]
 	path = lib/kayak
-	url = git://github.com/chakrit/kayak.git
+	url = git://github.com/kayak/kayak.git
