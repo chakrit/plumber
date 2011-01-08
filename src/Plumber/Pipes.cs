@@ -12,8 +12,14 @@ namespace Plumber
     public static Pipe Identity = c => c;
 
 
+    public static IServer Connect(Continuable cont)
+    { return Connect(cont.AsPipe()); }
+
     public static IServer Connect(Pipe pipes)
     { return Connect(new DefaultContainer(), DefaultHost, DefaultPort, pipes); }
+
+    public static IServer Connect(string host, int port, Continuable cont)
+    { return Connect(new DefaultContainer(), host, port, cont.AsPipe()); }
 
     public static IServer Connect(string host, int port, Pipe pipes)
     { return Connect(new DefaultContainer(), host, port, pipes); }

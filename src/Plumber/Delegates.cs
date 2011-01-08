@@ -33,5 +33,10 @@ namespace Plumber
     {
       return next => ctx => next(pipe(ctx));
     }
+
+    public static Pipe AsPipe(this Continuable cont)
+    {
+      return cont(Pipes.Identity);
+    }
   }
 }

@@ -20,9 +20,15 @@ namespace Plumber.Framework
     public ContinuableDict(IDictionary<string, Continuable> dict) :
       base(dict) { }
 
+    // fluent interface
     public static ContinuableDict New(string urlPrefix, Continuable cont)
     {
       return new ContinuableDict().Add(urlPrefix, cont);
+    }
+
+    public static ContinuableDict New(string urlPrefix, Pipe pipe)
+    {
+      return new ContinuableDict().Add(urlPrefix, pipe.AsContinuable());
     }
 
     public new ContinuableDict Add(string urlPrefix, Continuable cont)
@@ -33,7 +39,7 @@ namespace Plumber.Framework
 
     public ContinuableDict Add(string urlPrefix, Pipe pipe)
     {
-      base.Add(urlPrefix, next => ctx => next(pipe(ctx)));
+      base.Add(urlPrefix, pipe.AsContinuable());
       return this;
     }
 
