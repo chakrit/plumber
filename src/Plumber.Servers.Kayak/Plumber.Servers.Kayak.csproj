@@ -53,10 +53,6 @@
       <Project>{79DDD0CE-6F79-4212-A972-8618AD6E405F}</Project>
       <Name>Kayak</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\lib\owin\src\Owin.csproj">
-      <Project>{F00527A1-ABBA-4620-B8E2-257DDBEEEE0B}</Project>
-      <Name>Owin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Plumber.Owin\Plumber.Owin.csproj">
       <Project>{100B55BB-568A-484C-9766-427982315C85}</Project>
       <Name>Plumber.Owin</Name>

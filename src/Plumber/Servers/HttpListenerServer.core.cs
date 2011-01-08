@@ -107,6 +107,7 @@ namespace Plumber.Servers
 
       try {
         Handler(request, response);
+        response.End();
       }
       catch (Exception ex) {
         ReportError(null, ex);

@@ -25,9 +25,9 @@ namespace Plumber.Framework
       return next => ctx => pathFunc((ctx_, path) =>
       {
         var result = mappings.FindMapping(path);
-        return result == null ?
-          next(on404(ctx)) :
-          result(next)(ctx);
+
+        return (result == null ? on404 : result)(next)(ctx);
+
       })(ctx);
     }
   }

@@ -3,68 +3,55 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-using IOwinResponse = Owin.IResponse;
+using OwinCallback = System.Action<string, System.Collections.Generic.IDictionary<string, System.Collections.Generic.IList<string>>, System.Collections.Generic.IEnumerable<object>>;
 
 namespace Plumber.Servers
 {
-  public class OwinResponse : IOwinResponse, IResponse
+  public class OwinResponse : IResponse
   {
-    private IDictionary<string, IEnumerable<string>> _headers;
+    private OwinCallback _owinRespond;
 
+    private IDictionary<string, IList<string>> _headers;
     private MemoryStream _stream;
-    private byte[] _buffer;
 
-    public OwinResponse()
-    {
-      _headers = new Dictionary<string, IEnumerable<string>>();
-      _stream = new MemoryStream();
-    }
-
-    // _________________________________________________________________________
-    // Plumber interface
 
     public string ContentType
     {
       get
       {
         return _headers.ContainsKey("Content-Type") ?
-          _headers["Content-Type"].First() :
+          _headers["Content-Type"].Last() :
           null;
       }
-      set { _headers["Content-Type"] = new[] { value }; }
+      set { _headers["Content-Type"] = new[] { value }.ToList(); }
     }
 
+    // TODO: Validate these properties
     public int StatusCode { get; set; }
     public string StatusMessage { get; set; }
 
     public Stream Stream { get { return _stream; } }
 
+    public OwinResponse(OwinCallback owinRespond)
+    {
+      _owinRespond = owinRespond;
+
+      _headers = new Dictionary<string, IList<string>>();
+      _stream = new MemoryStream();
+    }
+
+
     public void End()
     {
-      _buffer = _stream.ToArray();
+      // invokes callback to owin interface
+      var buffer = _stream.ToArray();
       _stream.Close();
       _stream.Dispose();
-    }
 
-    // _________________________________________________________________________
-    // OWIN interface
-
-    public string Status
-    {
-      get { return StatusCode.ToString() + " " + StatusMessage; }
-    }
-
-    public IDictionary<string, IEnumerable<string>> Headers
-    {
-      get { return _headers; }
-    }
-
-    public IEnumerable<object> GetBody()
-    {
-      if (_buffer == null)
-        End(); // converts streams to buffer
-
-      yield return _buffer;
+      _owinRespond(
+        StatusCode.ToString() + " " + StatusMessage,
+        _headers,
+        new[] { buffer });
     }
 
   }

@@ -2,15 +2,15 @@
 using System;
 using System.IO;
 
-using IOwinRequest = Owin.IRequest;
+using OwinReader = System.Action<byte[], int, int, System.Action<int>, System.Action<System.Exception>>;
 
 namespace Plumber.Servers
 {
   public class OwinRequestStream : Stream
   {
-    private IOwinRequest _owin;
+    private OwinReader _owinReader;
 
-    public OwinRequestStream(IOwinRequest owinRequest) { _owin = owinRequest; }
+    public OwinRequestStream(OwinReader owinReader) { _owinReader = owinReader; }
 
 
     public override bool CanRead { get { return true; } }
@@ -33,11 +33,20 @@ namespace Plumber.Servers
 
     public override int Read(byte[] buffer, int offset, int count)
     {
+      // TODO: check buffer nulls and bounds
+      Exception exception = null;
       var result = 0;
-      var ar = _owin.BeginReadBody(buffer, offset, count,
-        ar_ => result = _owin.EndReadBody(ar_), null);
 
-      ar.AsyncWaitHandle.WaitOne();
+      var async = _owinReader.BeginInvoke(buffer, offset, count,
+        n => result = n,
+        ex => { throw ex; },
+        ar => _owinReader.EndInvoke(ar),
+        null);
+
+      async.AsyncWaitHandle.WaitOne();
+      if (exception != null)
+        throw exception;
+
       return result;
     }
 

@@ -73,6 +73,7 @@
     <Compile Include="Servers\HttpListenerServer.cs" />
     <Compile Include="Servers\IServer.cs" />
     <Compile Include="Servers\ServerBase.cs" />
+    <Compile Include="Services\EmptyServicesBroker.cs" />
     <Compile Include="Services\IServicesBroker.cs" />
     <Compile Include="ObjectsStore.cs" />
     <Compile Include="Pipes.cs" />

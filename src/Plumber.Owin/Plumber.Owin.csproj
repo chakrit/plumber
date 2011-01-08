@@ -41,19 +41,12 @@
       <Link>Properties\PlumberAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Delegates.cs" />
-    <Compile Include="OwinContainerBase.cs" />
-    <Compile Include="Servers\OwinServerBridge.cs" />
-    <Compile Include="Servers\OwinAsyncResult.cs" />
-    <Compile Include="OwinContainer.cs" />
+    <Compile Include="OwinExtensions.cs" />
     <Compile Include="Servers\OwinRequestStream.cs" />
     <Compile Include="Servers\OwinRequestWrapper.cs" />
     <Compile Include="Servers\OwinResponse.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\lib\owin\src\Owin.csproj">
-      <Project>{F00527A1-ABBA-4620-B8E2-257DDBEEEE0B}</Project>
-      <Name>Owin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Plumber\Plumber.csproj">
       <Project>{96A60BDD-98EB-4CC8-99CC-EFA5E29772B7}</Project>
       <Name>Plumber</Name>

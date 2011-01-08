@@ -1,32 +1,42 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.IO;
 
-using IOwinRequest = Owin.IRequest;
+using OwinReader = System.Action<byte[], int, int, System.Action<int>, System.Action<System.Exception>>;
 
 namespace Plumber.Servers
 {
   public class OwinRequestWrapper : IRequest
   {
-    private IOwinRequest _owin;
+    private IDictionary<string, object> _owinEnv;
     private Stream _requestStream;
 
-    public OwinRequestWrapper(IOwinRequest owinRequest) { _owin = owinRequest; }
+    public OwinRequestWrapper(IDictionary<string, object> owinEnv)
+    {
+      _owinEnv = owinEnv;
+    }
 
 
-    public string Method { get { return _owin.Method; } }
+    public string Method { get { return (string)_owinEnv["RequestMethod"]; } }
 
     public string Path
     {
-      get { return new Uri(_owin.Uri).AbsolutePath; }
+      get
+      {
+        return new Uri((string)_owinEnv["RequestUri"], UriKind.Relative)
+          .AbsolutePath;
+      }
     }
 
     public Stream Stream
     {
       get
       {
-        return _requestStream ??
-          (_requestStream = new OwinRequestStream(_owin));
+        if (_requestStream != null)
+          return _requestStream;
+
+        return new OwinRequestStream((OwinReader)_owinEnv["RequestBody"]);
       }
     }
 

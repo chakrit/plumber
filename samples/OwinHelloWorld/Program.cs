@@ -1,7 +1,6 @@
 ﻿
 using Plumber;
 using Plumber.Framework;
-using Plumber.Servers;
 
 namespace OwinHelloWorld
 {
@@ -12,16 +11,9 @@ namespace OwinHelloWorld
 
     public void Run()
     {
-      // uses the built-in HttpListener server via an OwinContainer
-      // replace with proper delegates when using your own web server
-      var container = new OwinContainer<MyOwinServer>(
-        (host, port) => new MyOwinServer(host, port),
-        (serv, app) => serv.Start(app),
-        (serv, app) => serv.Stop());
-
-      Pipes
-        .Connect(container, "localhost", 80, Static.String("Hello via OWIN!"))
-        .Start();
+      // use our own custom OWIN-compatible server to host the pipes
+      new MyOwinServer("localhost", 80)
+        .Start(Pipes.Connect(Static.String("Hello via OWIN!")).AsOwinApp());
     }
   }
 }

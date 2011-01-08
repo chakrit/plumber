@@ -35,9 +35,9 @@ namespace Plumber
 
     public virtual IServicesBroker BuildServicesBroker(IEnumerable<IService> services)
     {
-      Assert.ArgumentNotNull(() => services);
-
-      return new ServicesBroker(services);
+      return services == null ?
+        (IServicesBroker)new EmptyServicesBroker() :
+        new ServicesBroker(services);
     }
 
 

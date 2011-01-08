@@ -6,7 +6,7 @@ using System;
 
 namespace OwinHelloWorld
 {
-  public class MyOwinRequest : Owin.IRequest
+  public class MyOwinRequest
   {
     private HttpListenerRequest _request;
     private IDictionary<string, object> _items;
