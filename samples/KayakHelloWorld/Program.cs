@@ -1,4 +1,9 @@
 ﻿
+using System;
+using System.Net;
+
+using Kayak;
+
 using Plumber;
 using Plumber.Framework;
 
@@ -11,9 +16,17 @@ namespace KayakHelloWorld
 
     public void Run()
     {
-      Pipes
-        .Connect(new KayakContainer(), "localhost", 80, Static.String("Hello World!"))
-        .Start();
+      var server = new DotNetServer(new IPEndPoint(IPAddress.Loopback, 80));
+      var pipes = Pipes
+        .Connect(Static.String("Hello, World!"));
+
+      var instance = server.Start();
+      server.Host(new OwinApplication(pipes.AsOwinApp()));
+
+      Console.WriteLine("Listening...");
+      Console.ReadKey();
+
+      instance.Dispose();
     }
   }
 }
