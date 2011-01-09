@@ -11,9 +11,10 @@ namespace UrlMapping
 
     public void Run()
     {
-      var map = Map.Urls(ContinuableDict
+      var map = UrlMappings
         .New("/", Static.String("Hello, you just hit the front page!"))
-        .Add("/test", Static.String("Hello, you just hit the test page!")));
+        .Add("/test", Static.String("Hello, you just hit the test page!"))
+        .Map();
 
       Pipes.Connect(map).Start();
     }

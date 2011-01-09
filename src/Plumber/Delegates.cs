@@ -6,7 +6,6 @@ namespace Plumber
   // core stuff
   // the server just pumps out requests and response, it doesn't know about pipes
   public delegate void RequestHandler(IRequest request, IResponse response);
-  public delegate IContext ContextBuilder(IRequest request, IResponse response);
 
   // a `Pipe` takes a context, process something or transform it, if desired
   // then pass it on (usually to the next pipe via continuations)

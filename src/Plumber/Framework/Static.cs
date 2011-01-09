@@ -6,19 +6,13 @@ namespace Plumber.Framework
   public static class Static
   {
     public static Pipe String(string str)
-    {
-      return Static.String(next => ctx => next(ctx, str));
-    }
+    { return Static.String(next => ctx => next(ctx, str)); }
 
     public static Pipe String(string contentType, string str)
-    {
-      return Static.String(contentType, next => ctx => next(ctx, str));
-    }
+    { return Static.String(contentType, next => ctx => next(ctx, str)); }
 
     public static Pipe String(Produce<string> stringPipe)
-    {
-      return stringPipe(renderString);
-    }
+    { return stringPipe(renderString); }
 
     public static Pipe String(string contentType, Produce<string> stringPipe)
     {

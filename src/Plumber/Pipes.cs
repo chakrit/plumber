@@ -4,12 +4,10 @@ using Plumber.Services;
 
 namespace Plumber
 {
-  public static class Pipes
+  public static partial class Pipes
   {
     public const string DefaultHost = "localhost";
     public const int DefaultPort = 80;
-
-    public static Pipe Identity = c => c;
 
 
     public static IServer Connect(Continuable cont)

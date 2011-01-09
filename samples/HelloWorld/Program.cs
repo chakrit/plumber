@@ -6,15 +6,13 @@ namespace HelloWorld
 {
   public class Program
   {
-    static internal void Main()
-    {
-      new Program().Run();
-    }
+    internal static void Main() { new Program().Run(); }
 
 
     public void Run()
     {
-      Pipes.Connect("localhost", 80, Static.String("Hello World!")).Start();
+      Pipes.Connect(Static.String("Hello World!")).Start();
     }
+
   }
 }

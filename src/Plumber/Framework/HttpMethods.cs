@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Plumber.Framework
 {
-  // TODO: Support HEAD requests
+  // TODO: Should use Continuables instead?
   public static class HttpMethods
   {
     public class MethodMap
@@ -52,11 +52,6 @@ namespace Plumber.Framework
     }
 
 
-    // TODO: Implement HEAD such it supports the same interface used to
-    // implement GETs but of which doesn't render the result, only send
-    // HEADERS
-    // probably the signature should be something like:
-    // Head(Pipe onGet, Pipe notGetOrHead)
     public static Pipe Head(Pipe onHead, Pipe notHead)
     {
       return Custom("HEAD", onHead, notHead);
@@ -69,7 +64,6 @@ namespace Plumber.Framework
       return Custom("HEAD", ctx =>
       {
         // consume the response body, whilst allowing HTTP headers to be set
-        // normally
         // TODO: Should end the response as soon as data starts to be written
         // to save wasted cycles.... not sure how yet though.
         var response = new AugmentedResponse(ctx.Response, new NullStream());
@@ -81,25 +75,20 @@ namespace Plumber.Framework
 
     public static Pipe Trace(Pipe notTrace)
     {
-      return ctx =>
-      {
-        // TODO: Implement trace
-        return ctx;
-      };
+      // TODO: Implement TRACE
+      return Log.Message("TRACE is not yet implemented.");
     }
 
     public static Pipe Options(Pipe onOptions, Pipe notOptions)
     {
-      throw new NotImplementedException();
+      // TODO: Implement OPTIONS
+      return Log.Message("OPTIONS is not yet implemented.");
     }
 
     public static Pipe Options(string[] supportedMethods, Pipe notOptions)
     {
-      return ctx =>
-      {
-        // TODO: Implement OPTIONS
-        return ctx;
-      };
+      // TODO: Implement OPTIONS
+      return Log.Message("OPTIONS is not yet implemented.");
     }
 
 

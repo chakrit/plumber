@@ -48,7 +48,8 @@
     <Compile Include="DefaultContainer.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="Exceptions.cs" />
-    <Compile Include="Framework\ContinuableDict.cs" />
+    <Compile Include="Framework\Log.cs" />
+    <Compile Include="Framework\_\UrlMappings.cs" />
     <Compile Include="Framework\HttpErrors.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -61,12 +62,19 @@
       <DependentUpon>HttpStatuses.tt</DependentUpon>
     </Compile>
     <Compile Include="Framework\Map.cs" />
+    <Compile Include="Framework\_\Controller.cs" />
+    <Compile Include="Framework\Mvc.cs" />
     <Compile Include="Framework\Static.cs" />
     <Compile Include="IContainer.cs" />
     <Compile Include="IObjectsStore.cs" />
     <Compile Include="Assert.cs" />
     <Compile Include="Mime.cs" />
     <Compile Include="NullStream.cs" />
+    <Compile Include="Pipes.helpers.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pipes.helpers.tt</DependentUpon>
+    </Compile>
     <Compile Include="Servers\HttpListenerRequestWrapper.cs" />
     <Compile Include="Servers\HttpListenerResponseWrapper.cs" />
     <Compile Include="Servers\HttpListenerServer.core.cs" />
@@ -93,6 +101,10 @@
     <None Include="Framework\HttpStatuses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HttpStatuses.cs</LastGenOutput>
+    </None>
+    <None Include="Pipes.helpers.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Pipes.helpers.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
