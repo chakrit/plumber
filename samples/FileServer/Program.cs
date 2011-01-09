@@ -26,8 +26,8 @@ namespace FileServer
     public void Run()
     {
       var pipe = indexCheck(
-      onFolder: displayIndex(notFound: notFound()),
-      onFile: sendFileContent(notFound: notFound()));
+      onFolder: displayIndex(notFound: HttpErrors.NotFound()),
+      onFile: sendFileContent(notFound: HttpErrors.NotFound()));
 
       Pipes
         .Connect("localhost", 80, pipe)
@@ -37,28 +37,11 @@ namespace FileServer
 
     private Pipe indexCheck(Pipe onFolder, Pipe onFile)
     {
-      return ctx =>
+      return (ctx, next) =>
       {
         var path = mapPath(ctx.Request.Path);
-
-        if (string.IsNullOrEmpty(path) ||
-          Directory.Exists(path))
-          return onFolder(ctx);
-
-        return onFile(ctx);
-      };
-    }
-
-    private Pipe notFound()
-    {
-      return ctx =>
-      {
-        var resp = ctx.Response;
-        resp.StatusCode = 404;
-        resp.StatusMessage = "NotFound";
-        resp.Stream.Close();
-
-        return ctx;
+        (string.IsNullOrEmpty(path) || Directory.Exists(path) ? onFolder : onFile)
+          (ctx, next);
       };
     }
 
@@ -66,41 +49,41 @@ namespace FileServer
     {
       var specialFolders = new[] { ".", ".." };
 
-      return Static.String(Mime.Text.Html, (Pipe<string> next) => ctx =>
+      return (ctx, next) =>
       {
-        var curPath = Path
-          .Combine(_basePath, ctx.Request.Path.Substring(1));
+        // validate path
+        var curPath = Path.Combine(_basePath, ctx.Request.Path.Substring(1));
+        var fullPath = Path.GetFullPath(curPath);
 
-        // ensure valid path
-        if (!Directory.Exists(curPath) ||
-          !Path.GetFullPath(curPath).StartsWith(_basePath))
-          return notFound(ctx);
+        if (!Directory.Exists(curPath) || !fullPath.StartsWith(_basePath)) {
+          notFound(ctx, next);
+          return;
+        }
 
-        // enumerate files in the specified folder
-        var entries = Directory.GetFiles(curPath)
+        // generate list of files and folders to display in the index
+        var entries = Directory
+          .GetFiles(curPath)
           .Concat(Directory.GetDirectories(curPath))
           .Select(path => path.Substring(_basePath.Length));
 
         if (curPath != _basePath)
           entries = entries.Concat(specialFolders);
 
-        var html = _template
-          .RenderIndex(curPath, entries.ToArray());
-
-        return next(ctx, html);
-      });
+        // render the index page
+        var html = _template.RenderIndex(curPath, entries.ToArray());
+        Static.String(Mime.Text.Html, html)(ctx, next);
+      };
     }
 
     private Pipe sendFileContent(Pipe notFound)
     {
-      return Static.File(next => ctx =>
+      return (ctx, next) =>
       {
         var path = mapPath(ctx.Request.Path);
 
-        return isSafePath(path) && File.Exists(path) ?
-          next(ctx, path) :
-          notFound(ctx);
-      });
+        (isSafePath(path) && File.Exists(path) ?
+          Static.File(path) : notFound)(ctx, next);
+      };
     }
 
 

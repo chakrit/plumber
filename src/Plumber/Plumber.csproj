@@ -70,11 +70,7 @@
     <Compile Include="Assert.cs" />
     <Compile Include="Mime.cs" />
     <Compile Include="NullStream.cs" />
-    <Compile Include="Pipes.helpers.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Pipes.helpers.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Pipes.helpers.cs" />
     <Compile Include="Servers\HttpListenerRequestWrapper.cs" />
     <Compile Include="Servers\HttpListenerResponseWrapper.cs" />
     <Compile Include="Servers\HttpListenerServer.core.cs" />
@@ -101,10 +97,6 @@
     <None Include="Framework\HttpStatuses.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HttpStatuses.cs</LastGenOutput>
-    </None>
-    <None Include="Pipes.helpers.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Pipes.helpers.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

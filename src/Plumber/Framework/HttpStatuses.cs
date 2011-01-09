@@ -27,12 +27,12 @@ namespace Plumber.Framework
 
     public static Pipe Custom(int statusCode, string statusMsg)
     {
-      return ctx =>
+      return (ctx, next) =>
       {
         ctx.Response.StatusCode = statusCode;
         ctx.Response.StatusMessage = statusMsg;
 
-        return ctx;
+        next(ctx);
       };
     }
 	}

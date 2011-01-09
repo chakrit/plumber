@@ -1,27 +1,20 @@
 ﻿
-using System.Linq;
-
-using ContDict = System.Collections.Generic.IDictionary<string, Plumber.Continuable>;
-
 namespace Plumber.Framework
 {
   public static class Map
   {
-    public static Continuable Urls(UrlMappings mappings)
+    public static Pipe Urls(UrlMappings mappings)
     { return Urls(mappings, HttpErrors.NotFound()); }
 
-    public static Continuable Urls(UrlMappings mappings, Pipe on404)
-    { return Urls(mappings, on404.AsContinuable()); }
-
-    public static Continuable Urls(UrlMappings mappings, Continuable on404)
-    { return Custom(mappings, next => ctx => next(ctx, ctx.Request.Path), on404); }
+    public static Pipe Urls(UrlMappings mappings, Pipe on404)
+    { return Custom(mappings, Pipes.Produce(ctx => ctx.Request.Path), on404); }
 
 
-    public static Continuable Custom(UrlMappings mappings,
-      Produce<string> pathFunc, Continuable on404)
+    public static Pipe Custom(UrlMappings mappings,
+      Produce<string> pathFunc, Pipe on404)
     {
-      return next => ctx => pathFunc((ctx_, path) =>
-        mappings.FindMapping(path, ifNotFound: on404)(next)(ctx))(ctx);
+      return (c0, next) => pathFunc(c0, (ctx, path) =>
+        mappings.FindMapping(path, ifNotFound: on404)(ctx, next));
     }
   }
 }

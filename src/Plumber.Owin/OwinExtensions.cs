@@ -11,9 +11,6 @@ namespace Plumber
     public static OwinDelegate AsOwinApp(this IServer server)
     { return AsOwinApp(server.Handler); }
 
-    public static OwinDelegate AsOwinApp(this Continuable cont)
-    { return AsOwinApp(cont(Pipes.Identity)); }
-
     public static OwinDelegate AsOwinApp(this Pipe pipe)
     {
       var container = new DefaultContainer();

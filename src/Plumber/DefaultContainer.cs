@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 
 using Plumber.Servers;
@@ -8,12 +9,14 @@ namespace Plumber
 {
   public class DefaultContainer : IContainer
   {
-    public virtual RequestHandler BuildRequestHandler(Pipe pipes, IServicesBroker servicesBroker)
+    public virtual RequestHandler BuildRequestHandler(Pipe pipes,
+      IServicesBroker servicesBroker)
     {
       Assert.ArgumentsNotNull(() => pipes, () => servicesBroker);
 
-      return (req, resp) =>
-        pipes(BuildContext(req, resp, BuildStore(), servicesBroker));
+      return (request, response) => pipes(
+        BuildContext(request, response, BuildStore(), servicesBroker),
+        Pipes.End);
     }
 
     public virtual IServer BuildServer(string host, int port, RequestHandler handler)

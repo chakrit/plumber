@@ -46,9 +46,8 @@ namespace Plumber.Framework
 
     public static Pipe Custom(string methodName, Pipe onMethod, Pipe notMethod)
     {
-      return ctx => ctx.Request.Method.FastEquals(methodName) ?
-        onMethod(ctx) :
-        notMethod(ctx);
+      return (ctx, next) => (ctx.Request.Method.FastEquals(methodName) ?
+        onMethod : notMethod)(ctx, next);
     }
 
 
@@ -61,14 +60,13 @@ namespace Plumber.Framework
     {
       var notHead = Custom("GET", onGet, notGetOrHead);
 
-      return Custom("HEAD", ctx =>
+      return Custom("HEAD", (ctx, next) =>
       {
         // consume the response body, whilst allowing HTTP headers to be set
         // TODO: Should end the response as soon as data starts to be written
         // to save wasted cycles.... not sure how yet though.
-        var response = new AugmentedResponse(ctx.Response, new NullStream());
-
-        return onGet(new Context(ctx, newResponse: response));
+        var augmented = new AugmentedResponse(ctx.Response, new NullStream());
+        onGet(new Context(ctx, newResponse: augmented), next);
       }, notHead);
     }
 
@@ -140,9 +138,8 @@ namespace Plumber.Framework
         map["OPTIONS"] = Options(supportedMethods, notOptions: onUnknownMethod);
       }
 
-      return ctx => map.ContainsKey(ctx.Request.Method) ?
-        map[ctx.Request.Method](ctx) :
-        onUnknownMethod(ctx);
+      return (ctx, next) => (map.ContainsKey(ctx.Request.Method) ?
+        map[ctx.Request.Method] : onUnknownMethod)(ctx, next);
     }
   }
 }

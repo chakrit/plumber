@@ -7,9 +7,23 @@ namespace Plumber.Framework
   public static class Log
   {
     public static Pipe Message(string msg)
-    { return Pipes.Action(Trace.WriteLine, msg, "PIPES"); }
+    {
+      // can't use Pipes.Action due to Trace having a [Conditonal] attribute set
+      return (ctx, next) =>
+      {
+        Trace.WriteLine(msg);
+        next(ctx);
+      };
+    }
 
     public static Pipe Error(string msg)
-    { return Pipes.Action(Trace.TraceError, msg); }
+    {
+      // can't use Pipes.Action due to Trace having a [Conditonal] attribute set
+      return (ctx, next) =>
+      {
+        Trace.TraceError(msg);
+        next(ctx);
+      };
+    }
   }
 }
